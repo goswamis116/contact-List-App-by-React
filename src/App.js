@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ContactList from './components/ContactList';
+import AddContactForm from './components/AddContactForm';
+import UpdateContactForm from './components/UpdateContactForm';
 
 function App() {
+  const [contacts, setContacts] = useState([]);
+
+  const handleAddContact = (newContact) => {
+    setContacts([...contacts, newContact]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="mt-4 mb-4 bg-primary text-white text-center">Contact Management System By Santanu</h1>
+      <div className="row">
+        <div className="col-md-6">
+          <ContactList />
+        </div>
+        <div className="col-md-6">
+          <AddContactForm onAddContact={handleAddContact} />
+        </div>
+      </div>
     </div>
   );
 }
